@@ -9,20 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var movieViewModel = MovieViewModel()
+    @ObservedObject var movieViewModel = MovieListViewModel()
 
     var body: some View {
         NavigationView {
             List {
+                
                 ForEach(movieViewModel.movies) { movie in
                     NavigationLink(movie.title){
-                        MovieDescriptionView(movieImage: movie.image, movieTitle: movie.title, movieDescription: movie.description, movieRating: movie.rating, movieGenres: movie.genres)
+                        MovieDescriptionView(movieImage: movie.image, movieTitle: movie.title, movieDescription: movie.description, movieRating: movie.rating)
                     }
                     .font(.system(size: 25))
                     .frame(height: 50)
                 }
             }
-            .navigationTitle("Movies")
+            .navigationTitle("movie_list_navigation_title")
         }
     }
 }

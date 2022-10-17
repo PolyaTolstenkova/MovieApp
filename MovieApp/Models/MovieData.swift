@@ -7,17 +7,23 @@
 
 import Foundation
 
-struct MovieData: Decodable, Identifiable {
-    
-    let id: Int
-    let backdrop_path: String
-    let original_title: String
-    let overview: String
-    let popularity: Float
-    let genres: [Genres]
-    
+struct MovieData: Decodable {
+    let results: [Results]
 }
 
-struct Genres: Decodable {
-    let name: String
+struct Results: Decodable, Identifiable {
+    
+    let id: Int
+    let image: String
+    let title: String
+    let description: String
+    let rating: Float
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case image = "backdrop_path"
+        case title
+        case description = "overview"
+        case rating = "vote_average"
+    }
 }

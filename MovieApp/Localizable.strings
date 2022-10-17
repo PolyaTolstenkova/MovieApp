@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  MovieApp
+
+  Created by Полина Толстенкова on 17.10.2022.
+  
+*/
+
+// MARK: Movie List View
+
+"movie_list_navigation_title" = "Top Rated Movies";
+
+// MARK: Movie Detail VIew
+
+"movie_detail_rating" = "Rating: ";
+
+

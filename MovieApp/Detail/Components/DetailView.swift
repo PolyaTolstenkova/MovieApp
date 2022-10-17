@@ -9,12 +9,12 @@ import SwiftUI
 
 struct DetailView: View {
     
-    @State var title: String
+    @State var title: LocalizedStringKey
     @State var text: String
     
     var body: some View {
         HStack {
-            Text("\(title): ")
+            Text(title)
                 .frame(alignment: .top)
                 .bold()
             Text("\(text)")

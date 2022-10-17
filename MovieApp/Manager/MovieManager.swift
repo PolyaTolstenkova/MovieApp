@@ -10,12 +10,12 @@ import Combine
 
 class MovieManager {
     
-    func fetchMovies(_ url: URL) -> AnyPublisher<MovieData, Error> {
+    func fetchMovies(_ url: URL) -> AnyPublisher<Movie, Error> {
            return URLSession.shared
                 .dataTaskPublisher(for: url)
                 .receive(on: DispatchQueue.main)
                 .map(\.data)
-                .decode(type: MovieData.self, decoder: JSONDecoder())
+                .decode(type: Movie.self, decoder: JSONDecoder())
                 .eraseToAnyPublisher()
     }
 }

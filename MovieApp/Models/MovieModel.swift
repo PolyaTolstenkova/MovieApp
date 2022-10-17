@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieData: Decodable {
+struct Movie: Decodable {
     let results: [Results]
 }
 

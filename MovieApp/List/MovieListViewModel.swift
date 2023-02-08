@@ -16,14 +16,15 @@ class MovieListViewModel: ObservableObject {
     let movieManager = MovieManager()
     
     func getMovies() {
-        if let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=162ddaab84697ae414c4a5a14a4d64fa") {
+        if let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=162ddaab84697ae414c4a5a14a4d64fa"
+        ) {
             movieManager.fetchMovies(url)
                 .sink { res in
                     switch res {
-                        case .finished:
-                            break
-                        case .failure(let error):
-                            print(error.localizedDescription)
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        print(error.localizedDescription)
                     }
                 } receiveValue: { [weak self] movieData in
                     self?.movies = movieData.results

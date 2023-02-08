@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DetailView: View {
-    
     @State var title: LocalizedStringKey
     @State var text: String
     

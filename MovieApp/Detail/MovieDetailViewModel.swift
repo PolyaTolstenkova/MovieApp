@@ -13,5 +13,4 @@ class MovieDetailViewModel: ObservableObject {
         let formattedString = String(format: "%.1f", floatToFormat)
         return formattedString
     }
-    
 }

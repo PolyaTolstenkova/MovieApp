@@ -18,6 +18,7 @@ struct Results: Decodable, Identifiable {
     let title: String
     let description: String
     let rating: Float
+    let genres: [Int]
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -25,5 +26,6 @@ struct Results: Decodable, Identifiable {
         case title
         case description = "overview"
         case rating = "vote_average"
+        case genres = "genre_ids"
     }
 }

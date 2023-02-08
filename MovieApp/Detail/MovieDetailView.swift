@@ -36,9 +36,11 @@ struct MovieDescriptionView: View {
 
 struct MovieDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDescriptionView(movieImage: "image", movieTitle: "MOVIE", movieDescription: "description...", movieRating: 8.2)
+        MovieDescriptionView(
+            movieImage: "image",
+            movieTitle: "MOVIE",
+            movieDescription: "description...",
+            movieRating: 8.2
+        )
     }
 }
-
-
-

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct ImageView: View {
     @State var movieImage: String
@@ -18,7 +17,7 @@ struct ImageView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: .infinity)
         } placeholder: {
-            Color.gray
+            ProgressView()
         }
     }
 }

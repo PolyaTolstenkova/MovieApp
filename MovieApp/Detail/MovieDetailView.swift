@@ -6,9 +6,8 @@
 //
 
 import SwiftUI
-import Combine
 
-struct MovieDescriptionView: View {
+struct MovieDetailView: View {
     
     @ObservedObject var movieDetailVM = MovieDetailViewModel()
     
@@ -34,9 +33,10 @@ struct MovieDescriptionView: View {
     }
 }
 
-struct MovieDescriptionView_Previews: PreviewProvider {
+#if DEBUG
+struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDescriptionView(
+        MovieDetailView(
             movieImage: "image",
             movieTitle: "MOVIE",
             movieDescription: "description...",
@@ -44,3 +44,4 @@ struct MovieDescriptionView_Previews: PreviewProvider {
         )
     }
 }
+#endif

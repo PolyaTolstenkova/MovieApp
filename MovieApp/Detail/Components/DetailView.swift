@@ -25,8 +25,10 @@ struct DetailView: View {
     }
 }
 
+#if DEBUG
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         DetailView(title: "Rating", text: "20")
     }
 }
+#endif

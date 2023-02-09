@@ -9,7 +9,7 @@ import Foundation
 
 class GenrePickerViewModel: ObservableObject {
     
-    @Published var genres: [Genre] = [
+    let genres: [Genre] = [
         Genre(id: 0, name: "movie_genre_all".localized),
         Genre(id: 28, name: "movie_genre_action".localized),
         Genre(id: 12, name: "movie_genre_adventure".localized),

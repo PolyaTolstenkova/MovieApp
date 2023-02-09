@@ -10,7 +10,7 @@ import SwiftUI
 struct GenrePickerView: View {
     
     @ObservedObject var viewModel = GenrePickerViewModel()
-    @State var pickedGenre: String = "fwerfwef"
+    @State var selectedGenre: String = "fwerfwef"
     
     var body: some View {
         NavigationView {
@@ -19,29 +19,23 @@ struct GenrePickerView: View {
                 .font(.system(size: 30))
                 .bold()
                 
-                Picker("Please choose a genre", selection: $pickedGenre) {
-                    ForEach(viewModel.genres, id: \.id) {
-                        Text($0.name)
+                List {
+                    ForEach(viewModel.genres, id: \.id) { genre in
+                        NavigationLink(genre.name) {
+                            MovieListView(selectedGenre: genre)
+                        }
                     }
                 }
-                .pickerStyle(.wheel)
-                .padding(.vertical, 10)
-                
-                NavigationLink("Select") {
-                    MovieListView()
-                }
-                .font(.system(size: 25))
-                .bold()
-                .foregroundColor(.white)
-                .frame(width: 200, height: 50, alignment: .center)
-                .background(.green)
+                .listStyle(.sidebar)
             }
         }
     }
 }
 
+#if DEBUG
 struct GenrePickerView_Previews: PreviewProvider {
     static var previews: some View {
         GenrePickerView()
     }
 }
+#endif

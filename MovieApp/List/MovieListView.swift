@@ -9,28 +9,49 @@ import SwiftUI
 
 struct MovieListView: View {
     
-    @ObservedObject var movieViewModel = MovieListViewModel()
+    @ObservedObject var viewModel = MovieListViewModel()
+    @State var selectedGenre: Genre
 
     var body: some View {
-        List {
-            ForEach(movieViewModel.movies) { movie in
-                NavigationLink(movie.title) {
-                    MovieDescriptionView(
-                        movieImage: movie.image,
-                        movieTitle: movie.title,
-                        movieDescription: movie.description,
-                        movieRating: movie.rating
-                    )
+        VStack {
+            if !viewModel.getMoviesWithGenre(genre: selectedGenre.id).isEmpty {
+                List {
+                    ForEach(viewModel.getMoviesWithGenre(genre: selectedGenre.id)) { movie in
+                        NavigationLink(movie.title) {
+                            MovieDetailView(
+                                movieImage: movie.image,
+                                movieTitle: movie.title,
+                                movieDescription: movie.description,
+                                movieRating: movie.rating
+                            )
+                        }
+                        .font(.system(size: 20))
+                        .frame(height: 40)
+                    }
                 }
-                .font(.system(size: 25))
-                .frame(height: 50)
+                .navigationTitle(selectedGenre.name)
+            } else {
+                Text("There is no such movies")
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .font(.system(size: 30))
+                    .foregroundColor(.gray)
+                    .bold()
+                
+                Image("List")
+                    .padding(.horizontal, 30)
             }
+        }
+        .alert(isPresented: $viewModel.alertIsPresented) {
+            Alert(title: Text(viewModel.error?.localizedDescription ?? "unexpected_error".localized),
+                  dismissButton: .default(Text("OK")))
         }
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView()
+        MovieListView(selectedGenre: Genre(id: 0, name: ""))
     }
 }
+#endif

@@ -13,22 +13,19 @@ class MovieListViewModel: ObservableObject {
     @Published var error: Error?
     @Published var alertIsPresented: Bool = false
     
-    let dataManager = DataManager()
+    let dataManager = MovieManager()
     
     init() {
         getMovies()
     }
     
     func getMovies() {
-        dataManager.fetchData(
-            url: "https://api.themoviedb.org/3/movie/top_rated?api_key=162ddaab84697ae414c4a5a14a4d64fa",
-            dataType: Movie.self
-        ) { movies, error in
+        dataManager.fetchMovies { [weak self] movies, error in
             if let movies = movies {
-                self.movies = movies.results
+                self?.movies = movies.results
             } else {
-                self.alertIsPresented = true
-                self.error = error
+                self?.alertIsPresented = true
+                self?.error = error
             }
         }
     }

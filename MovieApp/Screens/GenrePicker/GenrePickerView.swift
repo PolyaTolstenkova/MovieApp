@@ -1,13 +1,13 @@
 //
-//  GenrePickerViewModel.swift
+//  GenrePickerView.swift
 //  MovieApp
 //
 //  Created by Полина Толстенкова on 08.02.2023.
 //
 
-import Foundation
+import SwiftUI
 
-class GenrePickerViewModel: ObservableObject {
+struct GenrePickerView: View {
     
     let genres: [Genre] = [
         Genre(id: 0, name: "movie_genre_all".localized),
@@ -31,4 +31,33 @@ class GenrePickerViewModel: ObservableObject {
         Genre(id: 10752, name: "movie_genre_war".localized),
         Genre(id: 37, name: "movie_genre_western".localized)
     ]
+
+    @State var selectedGenre: String = ""
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("Pick a genre")
+                .font(.system(size: 30))
+                .bold()
+                
+                List {
+                    ForEach(genres, id: \.id) { genre in
+                        NavigationLink(genre.name) {
+                            MovieListView(selectedGenre: genre)
+                        }
+                    }
+                }
+                .listStyle(.sidebar)
+            }
+        }
+    }
 }
+
+#if DEBUG
+struct GenrePickerView_Previews: PreviewProvider {
+    static var previews: some View {
+        GenrePickerView()
+    }
+}
+#endif

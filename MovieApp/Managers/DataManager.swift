@@ -8,11 +8,10 @@
 import Foundation
 import Alamofire
 
-class DataManager {
+class DataManager<T: Decodable> {
     
-    func fetchData<T: Decodable>(
+    func fetchData(
         url: String,
-        dataType: T.Type,
         completion: @escaping (T?, Error?) -> Void
     ) {
         AF.request(url, parameters: nil, headers: nil)

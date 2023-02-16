@@ -2,22 +2,34 @@
 //  ImageView.swift
 //  MovieApp
 //
-//  Created by Полина Толстенкова on 16.10.2022.
+//  Created by Полина Толстенкова on 13.02.2023.
 //
 
 import SwiftUI
 
 struct ImageView: View {
-    @State var movieImage: String
+    
+    @State var brand: Branding?
+    @ObservedObject var viewModel: TickerDetailsViewModel
     
     var body: some View {
-        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movieImage)")) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: .infinity)
-        } placeholder: {
-            ProgressView()
+        
+        if let brand = brand {
+            if let icon = brand.icon {
+                VStack {
+                    AsyncImage(url: viewModel.getImageURL(url: icon)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .padding(.trailing, 20)
+                            .frame(alignment: .leading)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 100)
+                }
+                .frame(alignment: .leading)
+            }
         }
     }
 }

@@ -10,11 +10,19 @@ import Alamofire
 
 class DataManager<T: Decodable> {
     
+    let token: String
+    let headers: HTTPHeaders
+    
+    init(token: String) {
+        self.token = token
+        self.headers = [.authorization(bearerToken: token)]
+    }
+    
     func fetchData(
         url: String,
         completion: @escaping (T?, Error?) -> Void
     ) {
-        AF.request(url, parameters: nil, headers: nil)
+        AF.request(url, headers: headers)
         .validate(statusCode: 200 ..< 300)
         .responseDecodable(of: T.self) { response in
             switch response.result {

@@ -48,6 +48,10 @@ struct TickerDetailsView: View {
                           dismissButton: .default(Text("OK")))
                 }
             }
+            Spacer()
+        }
+        .onAppear {
+            viewModel.getTickerDetails()
         }
         .padding(.horizontal, 20)
     }

@@ -17,12 +17,14 @@ class TickerDetailsViewModel: ObservableObject {
     
     let dataManager = TickerDetailsManager()
     
+    private var tickerName: String = ""
+    
     init(ticker: String) {
-        self.getTickerDetails(ticker: ticker)
+        self.tickerName = ticker
     }
 
-    func getTickerDetails(ticker: String) {
-        dataManager.fetchTickerDetails(ticker: ticker) { [weak self] ticker, error in
+    func getTickerDetails() {
+        dataManager.fetchTickerDetails(ticker: tickerName) { [weak self] ticker, error in
             if let ticker = ticker {
                 self?.ticker = ticker
             } else {

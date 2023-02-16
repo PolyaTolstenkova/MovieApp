@@ -22,13 +22,11 @@ struct ImageView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .padding(.trailing, 20)
-                            .frame(alignment: .leading)
                     } placeholder: {
                         ProgressView()
                     }
-                    .frame(width: 100)
+                    .frame(maxWidth: .infinity, maxHeight: 100, alignment: .leading)
                 }
-                .frame(alignment: .leading)
             }
         }
     }

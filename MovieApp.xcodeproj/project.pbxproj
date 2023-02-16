@@ -19,7 +19,6 @@
 		6A37A6B0299426F0006C0371 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A37A6AF299426F0006C0371 /* String.swift */; };
 		6A37A6B329942F02006C0371 /* TickerDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A37A6B229942F02006C0371 /* TickerDetails.swift */; };
 		6A3CCF7D28FDACAB002458B9 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A3CCF7C28FDACAB002458B9 /* DataManager.swift */; };
-		6A6EE86D299E80F600F30E3D /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 6A6EE86C299E80F600F30E3D /* SwiftUINavigation */; };
 		6A7295732995936B00DDB3BD /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7295722995936B00DDB3BD /* Alamofire.xcframework */; };
 		6A77771E299AC7810044E66E /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A77771D299AC7810044E66E /* ImageView.swift */; };
 		6AA679AB28FB3B44001DD529 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA679AA28FB3B44001DD529 /* Ticker.swift */; };
@@ -64,7 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A6EE86D299E80F600F30E3D /* SwiftUINavigation in Frameworks */,
 				6A7295732995936B00DDB3BD /* Alamofire.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,7 +208,6 @@
 			);
 			name = MovieApp;
 			packageProductDependencies = (
-				6A6EE86C299E80F600F30E3D /* SwiftUINavigation */,
 			);
 			productName = MovieApp;
 			productReference = 6A14338128FB2E29008A234F /* MovieApp.app */;
@@ -263,7 +260,6 @@
 			);
 			mainGroup = 6A14337828FB2E29008A234F;
 			packageReferences = (
-				6A6EE86B299E80F600F30E3D /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
 			);
 			productRefGroup = 6A14338228FB2E29008A234F /* Products */;
 			projectDirPath = "";
@@ -604,25 +600,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		6A6EE86B299E80F600F30E3D /* XCRemoteSwiftPackageReference "swiftui-navigation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swiftui-navigation";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		6A6EE86C299E80F600F30E3D /* SwiftUINavigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6A6EE86B299E80F600F30E3D /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
-			productName = SwiftUINavigation;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6A14337928FB2E29008A234F /* Project object */;
 }

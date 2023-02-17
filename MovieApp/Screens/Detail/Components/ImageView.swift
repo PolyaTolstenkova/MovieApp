@@ -9,24 +9,22 @@ import SwiftUI
 
 struct ImageView: View {
     
-    @State var brand: Branding?
     @ObservedObject var viewModel: TickerDetailsViewModel
+    let icon: URL?
     
     var body: some View {
         
-        if let brand = brand {
-            if let icon = brand.icon {
-                VStack {
-                    AsyncImage(url: viewModel.getImageURL(url: icon)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .padding(.trailing, 20)
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: 100, alignment: .leading)
+        if let icon = icon {
+            VStack {
+                AsyncImage(url: icon.addApiKey(apiKey: "api_key".localized)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(.trailing, 20)
+                } placeholder: {
+                    ProgressView()
                 }
+                .frame(maxWidth: .infinity, maxHeight: 100, alignment: .leading)
             }
         }
     }

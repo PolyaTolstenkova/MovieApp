@@ -7,24 +7,24 @@
 
 import Foundation
 import SwiftUI
-import Alamofire
 
-class TickerDetailsViewModel: ObservableObject {
+class TickerDetailsViewModel: ObservableObject, TickerDetailsViewModelProtocol {
     
     @Published var ticker: TickerDetails?
     @Published var error: Error?
     @Published var alertIsPresented: Bool = false
     
-    let dataManager = TickerDetailsManager()
+    private let tickerManager: TickerManagerProtocol
     
     private var tickerName: String = ""
     
-    init(ticker: String) {
+    init(ticker: String, tickerManager: TickerManagerProtocol) {
         self.tickerName = ticker
+        self.tickerManager = tickerManager
     }
 
     func getTickerDetails() {
-        dataManager.fetchTickerDetails(ticker: tickerName) { [weak self] ticker, error in
+        tickerManager.fetchTickerDetails(ticker: tickerName) { [weak self] ticker, error in
             if let ticker = ticker {
                 self?.ticker = ticker
             } else {
@@ -32,14 +32,5 @@ class TickerDetailsViewModel: ObservableObject {
                 self?.error = error
             }
         }
-    }
-    
-    func getImageURL(url: URL?) -> URL? {
-        if let url = url {
-            let apiKey = "wMNVr1V6G1q8gfTtgfMQbTv4cktBOyCG#"
-            let urlWithApiKey = URL(string: "\(url)?apiKey=\(apiKey)")
-            return urlWithApiKey
-        }
-        return nil
     }
 }

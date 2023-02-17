@@ -7,18 +7,32 @@
 
 import Foundation
 
-class TickerManager {
-    let manager = DataManager<Ticker>(token: "wMNVr1V6G1q8gfTtgfMQbTv4cktBOyCG")
+class TickerManager: TickerManagerProtocol {
     
-    let url = "https://api.polygon.io/v3/reference/tickers?active=true"
+    private let tickerDataManager = DataManager<TickerDTO>()
+    private let detailsDataManager = DataManager<TickerDetailsDTO>()
     
-    func fetchTickers(completion: @escaping (Ticker?, Error?) -> Void) {
-        manager.fetchData(
+    private let url = "tickers_url".localized
+    
+    func fetchTickers(completion: @escaping (Tickers?, Error?) -> Void) {
+        tickerDataManager.fetchData(
             url: url
         ) { tickers, error in
             
             if let tickers = tickers {
-                completion(tickers, nil)
+                completion(tickers.toDomainModel(), nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func fetchTickerDetails(ticker: String, completion: @escaping (TickerDetails?, Error?) -> Void) {
+        
+        let url = "\("ticker_details_url".localized)\(ticker)"
+        detailsDataManager.fetchData(url: url) { tickers, error in
+            if let tickers = tickers {
+                completion(tickers.toDomainModel(), nil)
             } else {
                 completion(nil, error)
             }

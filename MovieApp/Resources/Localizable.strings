@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  MovieApp
+
+  Created by Полина Толстенкова on 17.10.2022.
+  
+*/
+
+// MARK: Ticker List View
+
+"list_type" = "Type:";
+"list_location" = "Location:";
+"list_tickers" = "Tickers";
+
+//MARK: Ticker Details View
+
+"details_employees" = "Employees:";
+"details_button" = "Go to Website";
+
+//MARK: Alert
+
+"unexpected_error" = "An unexpected error occurred";
+"alert_button_ok" = "OK";
+
+//MARK: APIKey
+
+"api_key" = "wMNVr1V6G1q8gfTtgfMQbTv4cktBOyCG";
+
+//MARK: Ticker Manager
+
+"tickers_url" = "https://api.polygon.io/v3/reference/tickers?active=true";
+"ticker_details_url" = "https://api.polygon.io/v3/reference/tickers/";

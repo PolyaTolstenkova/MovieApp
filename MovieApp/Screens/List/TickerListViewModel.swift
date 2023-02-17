@@ -7,22 +7,28 @@
 
 import Foundation
 
-class TickerListViewModel: ObservableObject {
+class TickerListViewModel: ObservableObject, TickerListViewModelProtocol {
     
-    @Published var tickers: [Results] = []
+    @Published var tickers: [Ticker] = []
     @Published var error: Error?
     @Published var alertIsPresented: Bool = false
+    @Published var isLoading: Bool = true
     
-    let dataManager = TickerManager()
+    private let tickerManager: TickerManagerProtocol
     
-    init() {
+    init(tickerManager: TickerManagerProtocol) {
+        self.tickerManager = tickerManager
         getTickers()
     }
     
     func getTickers() {
-        dataManager.fetchTickers { [weak self] tickers, error in
+        tickerManager.fetchTickers { [weak self] tickers, error in
             if let tickers = tickers {
-                self?.tickers = tickers.results
+                self?.tickers = tickers.tickers
+                
+                if !(self?.tickers.isEmpty ?? false) {
+                    self?.isLoading = false
+                }
             } else {
                 self?.alertIsPresented = true
                 self?.error = error

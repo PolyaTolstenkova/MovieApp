@@ -1,20 +1,20 @@
 //
-//  MovieModel.swift
+//  Ticker.swift
 //  MovieApp
 //
-//  Created by Полина Толстенкова on 15.10.2022.
+//  Created by Полина Толстенкова on 17.02.2023.
 //
 
 import Foundation
 
-struct Ticker: Decodable {
-    let results: [Results]
+struct Tickers {
+    let tickers: [Ticker]
 }
 
-struct Results: Decodable, Hashable {
-
+struct Ticker: Hashable {
+    
     let ticker: String
     let name: String
     let type: String
-    let locale: String
+    let location: String
 }

@@ -16,15 +16,15 @@ struct TickerDetailsView: View {
         VStack {
             if let ticker = viewModel.ticker {
                 
-                ImageView(brand: ticker.results.branding, viewModel: viewModel)
+                ImageView(viewModel: viewModel, icon: ticker.icon)
                 
-                Text(ticker.results.name)
+                Text(ticker.name)
                     .font(.system(size: 30))
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.vertical)
                 
-                Text("Employees: \(ticker.results.employees)")
+                Text("\("details_employees".localized) \(ticker.employees)")
                     .font(.system(size: 20))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -41,11 +41,11 @@ struct TickerDetailsView: View {
                 .background(.purple)
                 .padding()
                 .sheet(isPresented: $isPresented) {
-                    WebView(url: ticker.results.url)
+                    WebView(url: ticker.websiteURL)
                 }
                 .alert(isPresented: $viewModel.alertIsPresented) {
                     Alert(title: Text(viewModel.error?.localizedDescription ?? "unexpected_error".localized),
-                          dismissButton: .default(Text("OK")))
+                          dismissButton: .default(Text("alert_button_ok".localized)))
                 }
             }
             Spacer()
@@ -60,7 +60,7 @@ struct TickerDetailsView: View {
 #if DEBUG
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        TickerDetailsView(viewModel: TickerDetailsViewModel(ticker: ""))
+        TickerDetailsView(viewModel: TickerDetailsViewModel(ticker: "", tickerManager: TickerManager()))
     }
 }
 #endif
